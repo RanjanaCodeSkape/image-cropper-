@@ -12,13 +12,13 @@ const ImageCropper = ({ image, onCropDone, onCropCancel }) => {
   };
 
   const onAspectRatioChange = (event) => {
-    setAspectRatio(parseFloat(event.target.value)); // Ensure the value is parsed as a float
+    setAspectRatio(parseFloat(event.target.value)); 
   };
 
   return (
     <>
-      <div className="cropper">
-        <div>
+      <div className="cropper w-full  flex justify-center">
+        <div className='flex justify-center items-center w-[50%]'>
           <Cropper
             image={image}
             aspect={aspectRatio}
@@ -29,15 +29,16 @@ const ImageCropper = ({ image, onCropDone, onCropCancel }) => {
             onCropComplete={onCropComplete}
             style={{
               containerStyle: {
-                width: '100%',
+                width: '50%',
                 height: '80%',
                 backgroundColor: '#fff',
+                
               },
             }}
           />
         </div>
-        <div className="action-btns">
-          <div className="aspect-ratios" onChange={onAspectRatioChange}>
+        <div className="action-btns bg-[#f4f1de] fixed top-[84vh] w-[70%] p-3 rounded-lg flex  justify-between items-center">
+          <div className="aspect-ratios  flex gap-4" onChange={onAspectRatioChange}>
             <label>
               <input type="radio" value={1 / 1} name="aspectRatio" defaultChecked /> 1:1
             </label>
@@ -60,11 +61,11 @@ const ImageCropper = ({ image, onCropDone, onCropCancel }) => {
               <input type="radio" value={3 / 1} name="aspectRatio" /> 3:1
             </label>
           </div>
-          <div className="btn-container">
-            <button className="btn btn-outline" onClick={onCropCancel}>
+          <div className="btn-container flex gap-3">
+            <button className="  border-1 bg-[#3d405b] text-white p-2 rounded-lg" onClick={onCropCancel}>
               Cancel
             </button>
-            <button className="btn" onClick={() => onCropDone(croppedArea)}>
+            <button className=" border-1 bg-[#3d405b] text-white p-2 rounded-lg " onClick={() => onCropDone(croppedArea)}>
               Crop & Save
             </button>
           </div>

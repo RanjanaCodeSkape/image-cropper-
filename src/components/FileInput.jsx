@@ -5,10 +5,11 @@ const FileInput = ({ onImageSelected }) => {
 
   const handleOnChange = (event) => {
     if (event.target.files && event.target.files.length > 0) {
+      const selectedFile = event.target.files[0];
       const reader = new FileReader();
-      reader.readAsDataURL(event.target.files[0]);
+      reader.readAsDataURL(selectedFile);
       reader.onload = function (e) {
-        onImageSelected(reader.result);
+        onImageSelected(reader.result, selectedFile); 
       };
     }
   };
@@ -24,9 +25,9 @@ const FileInput = ({ onImageSelected }) => {
         accept="image/*"
         ref={inputRef}
         onChange={handleOnChange}
-        style={{ display: 'none' }}
+        style={{ display: "none" }}
       />
-      <button className="btn" onClick={onChooseImg}>
+      <button className="border-1 bg-[#3d405b] text-white p-2 rounded-lg" onClick={onChooseImg}>
         Choose Image
       </button>
     </div>
